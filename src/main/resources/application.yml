@@ -1,0 +1,3 @@
+app:
+  traffic:
+    url: https://api.sr.se/api/v2/traffic
