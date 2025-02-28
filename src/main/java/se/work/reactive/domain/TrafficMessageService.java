@@ -6,8 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
-import se.work.reactive.domain.model.TrafficMessage;
-import se.work.reactive.domain.model.TrafficResponse;
+import se.work.reactive.domain.model.traffic.TrafficMessage;
+import se.work.reactive.domain.model.traffic.TrafficResponse;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +19,7 @@ public class TrafficMessageService {
 
     public Flux<TrafficMessage> getLatestMessages() {
         return webClient.get()
-                .uri("/messages?format=json")
+                .uri("/traffic/messages?format=json")
                 .retrieve()
                 .bodyToMono(TrafficResponse.class)
                 .flatMapMany(trafficResponse -> Flux.fromIterable(trafficResponse.messages()));
@@ -27,7 +27,7 @@ public class TrafficMessageService {
 
     private Flux<TrafficMessage> getLatestMessage_DebugVersion() {
         return webClient.get()
-                .uri(uriBuilder -> uriBuilder.path("/messages")
+                .uri(uriBuilder -> uriBuilder.path("/traffic/messages")
                         .queryParam("format", "json")
                         .build()
                 ).exchangeToFlux(response -> {

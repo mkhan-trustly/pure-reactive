@@ -21,4 +21,5 @@ public class TrafficMessageController {
         return trafficMessageService.getLatestMessages()
                 .map(TrafficMessageMapper::toDto);
     }
+
 }

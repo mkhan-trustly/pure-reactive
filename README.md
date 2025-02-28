@@ -205,4 +205,5 @@ RestTemplate? Time to upgrade if you are still using it.
 
 ## Object wrapper
 Important to ignore fields that we don't want to map, see the bean configuration.
+As a bonus I have added brief description on the different configurations.
 
