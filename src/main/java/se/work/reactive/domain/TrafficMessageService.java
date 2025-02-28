@@ -25,6 +25,10 @@ public class TrafficMessageService {
                 .flatMapMany(trafficResponse -> Flux.fromIterable(trafficResponse.messages()));
     }
 
+    /**
+     * This is a debug version to show what happens in each step, this code is not used but is here only for demo
+     * @return Flux<TrafficMessage>
+     */
     private Flux<TrafficMessage> getLatestMessage_DebugVersion() {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/traffic/messages")
